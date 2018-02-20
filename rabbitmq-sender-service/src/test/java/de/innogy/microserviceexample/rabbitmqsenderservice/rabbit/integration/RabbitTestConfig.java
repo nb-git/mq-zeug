@@ -4,6 +4,7 @@ package de.innogy.microserviceexample.rabbitmqsenderservice.rabbit.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.rabbitmq.client.Channel;
+import de.innogy.microserviceexample.rabbitmqsenderservice.rabbit.util.TestRabbitTemplate;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -15,7 +16,7 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.test.TestRabbitTemplate;
+
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -88,7 +89,7 @@ public class RabbitTestConfig {
 
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
-        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
-        return new Jackson2JsonMessageConverter(mapper);
+        //ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+        return new Jackson2JsonMessageConverter();
     }
 }

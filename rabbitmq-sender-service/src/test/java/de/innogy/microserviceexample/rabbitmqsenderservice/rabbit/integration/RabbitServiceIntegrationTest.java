@@ -9,6 +9,7 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 
+import de.innogy.microserviceexample.rabbitmqsenderservice.rabbit.util.TestRabbitTemplate;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,7 @@ import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.amqp.rabbit.test.TestRabbitTemplate;
+
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,16 +46,16 @@ public class RabbitServiceIntegrationTest {
 
     @Test
     public void testSimpleSends() {
-        this.template.convertAndSend("foo", "hello1");
+//        this.template.convertAndSend("foo", "hello1");
 //        assertThat(this.config.fooIn, equalTo("foo:hello1"));
-//        this.template.convertAndSend("bar", "hello2");
-//        assertThat(this.config.barIn, equalTo("bar:hello2"));
-//        assertThat(this.config.smlc1In, equalTo("smlc1:"));
-//        this.template.convertAndSend("foo", "hello3");
-//        assertThat(this.config.fooIn, equalTo("foo:hello1"));
-//        this.template.convertAndSend("bar", "hello4");
-//        assertThat(this.config.barIn, equalTo("bar:hello2"));
-//        assertThat(this.config.smlc1In, equalTo("smlc1:hello3hello4"));
+        this.template.convertAndSend("bar", "hello2");
+        assertThat(this.config.barIn, equalTo("bar:hello2"));
+        assertThat(this.config.smlc1In, equalTo("smlc1:"));
+        this.template.convertAndSend("foo", "hello3");
+        assertThat(this.config.fooIn, equalTo("foo:hello1"));
+        this.template.convertAndSend("bar", "hello4");
+        assertThat(this.config.barIn, equalTo("bar:hello2"));
+        assertThat(this.config.smlc1In, equalTo("smlc1:hello3hello4"));
     }
 
 //    @Test
