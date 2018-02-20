@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+// See: https://g00glen00b.be/spring-boot-jwt/
 @Service
 public class TokenService {
 
